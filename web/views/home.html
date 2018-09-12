@@ -1,0 +1,65 @@
+ <div id="home" ng-cloak>
+    <div class="wrapper">
+        <header>
+            <h2>{{titulo}}</h2>
+            <pre class="hide">{{sucesso}}</pre>
+            <pre class="hide">{{}}</pre>
+        </header>
+        <section ng-if="tela==1" class="ponto" >
+            <img ng-show="!sucesso" src="imagens/fingerprint2.jpg" width="100px" ng-click="apontar()"/>
+            <img ng-show="sucesso" src="imagens/success.png" width="100px" />
+        </section>
+        <section ng-if="tela==2" class="dia">
+            <ul>
+                <li ng-repeat="(key, value) in apontamentosDoDia">
+                    <a href="javascript:void(0)">
+                        <i class="fas fa-pencil-alt"></i>
+                        <span  ng-click="editar(value)">{{value.ponto | date:'HH:mm'}}</span>
+                        <i class="fas fa-times" ng-click="deletar(value.id)"></i>
+                    </a>
+                </li>
+            </ul>
+        </section>
+        <section ng-if="tela==3" class="mes">
+            <ul>
+                <li ng-repeat="(key, value)  in todosApontamentos | toArray | orderBy:value[0]">
+                    <a href="javascript:void(0)">
+                        <span class="data hide" ng-click="editar(value)">key: {{key}}</span>
+                        <span class="data hide" ng-click="editar(value)">value: {{value}}+</span>												
+						<span class="data" ng-click="editar(value)">{{value[0] | date:'dd/MM/yyyy'}}</span>
+						<span class="horas">
+                            <span class="hora " ng-click="editar(value)" ng-repeat="h in value[1]">
+                                {{h.valor | date:'HH:mm'}}
+                            </span>
+                        </span>
+                        <br>
+                        <span class="total hide">Total: 9h</span>
+                        <button type="button" class="btn btn-primary btn-sm" disabled>
+                          Total <span class="badge badge-pill badge-light">8h</span>
+                        </button>
+                        <button type="button" class="btn btn-success btn-sm previsao" disabled>
+                          Previsão: <span class="badge badge-pill badge-light">até as 19:30</span>
+                        </button>
+                        <button type="button" class="btn btn-danger btn-sm hide" disabled>
+                          R$: <span class="badge badge-pill badge-light">450</span>
+                        </button>
+                    </a>
+                </li>
+            </ul>
+        </section>
+        <section ng-if="tela==4" class="edicao">
+            <!-- <div uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div> -->
+            <input class="ponto" ng-model="entidadeSelecionada.ponto"></input>   
+            <a class="btn btn-success" ng-click="salvar()">Salvar</a>         
+            <a class="btn btn-warning" ng-click="voltar()">Voltar</a>         
+        </section>
+        <nav>
+            <ul>
+                <li ng-click="mudarTela(1)" ng-class="{'ativado' : tela==1}" class="ponto"><a href="javascript:void(0)"><i class="fas fa-fingerprint"></i></a></li>
+                <li ng-click="mudarTela(2)" ng-class="{'ativado' : tela==2}" class="hoje"><a href="javascript:void(0)"><i class="fas fa-calendar-check"></i></a></li>
+                <li ng-click="mudarTela(3)" ng-class="{'ativado' : tela==3}" class="mes"><a href="javascript:void(0)"><i class="fas fa-calendar-alt"></i></a></li>
+                <li ng-click="sair()" class="sair"><a href="javascript:void(0)"><i class="fas fa-sign-out-alt"></i></a></li>
+            </ul>
+        </nav>
+    </div>
+ </div> 
