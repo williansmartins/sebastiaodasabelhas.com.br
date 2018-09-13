@@ -60,6 +60,9 @@ jQuery(function($) {'use strict',
 	
 	// Slider Height
 	var slideHeight = $(window).height();
+
+	slideHeight = 300;
+
 	$('#home-carousel .item').css('height',slideHeight);
 
 	$(window).resize(function(){'use strict',
