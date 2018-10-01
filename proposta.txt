@@ -1,0 +1,31 @@
+== PROPOSTA PRINCIPAL
+	::BANNER ANIMADO
+		
+	::CONTATO
+
+	::FOTOS E VIDEOS (PORTIFOLIO)
+		apicultor
+		colméias
+		processo
+
+	::ÚLTIMAS CAPTURAS
+		latest blog
+
+	::BENEFÍCIOS DO MEL (WHY LIKE US)
+	
+	::PRODUTO (PRICING TABLE)
+		titulo
+		valor
+		categoria
+
+			link apontando para mercado livre
+
+== (EXTRA)
+	::CURSO e TREINAMENTO 
+
+	::APITERAPIA
+
+	::CONSULTORIA
+
+	::DEPOIMENTOS
+		de clientes de produtos e serviços
