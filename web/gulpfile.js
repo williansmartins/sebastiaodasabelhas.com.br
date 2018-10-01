@@ -13,7 +13,6 @@ var browserSync = require('browser-sync').create();
 gulp.task('serve', ['css-mine'], function() {
 
     browserSync.init({
-        browser: "chrome",
         server: "."
     });
 
