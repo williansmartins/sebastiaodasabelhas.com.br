@@ -1,0 +1,83 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:8.9
+      
+    working_directory: ~/projeto
+
+    steps:
+      - checkout
+
+      - run: 
+          name: ls
+          command: |
+            ls -lia /home/circleci/projeto
+
+      - persist_to_workspace:
+          root: /home/circleci/projeto
+          paths: 
+            - www
+
+  deploy:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:8.9
+      
+    working_directory: ~/projeto
+
+    steps:
+
+      - attach_workspace:
+          at: tmp/
+      
+      - run: 
+          name: ls
+          command: |
+            ls -lia
+
+      - run: 
+          name: ls da TMP
+          command: |
+            ls -lia tmp
+
+      - run: 
+          name: ls da tmp/www   
+          command: |
+            ls -lia tmp/www            
+
+      - run: 
+          name: ssh-keygen (gerar chave SSH)
+          command: |
+            ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+
+      - run:
+          name: ssh-keyscan
+          command: ssh-keyscan -H pwms.com.br >> ~/.ssh/known_hosts  
+
+      - run: 
+          name: ver known_hosts
+          command: |
+            cat ~/.ssh/known_hosts             
+
+      - run:
+          name: Deploy Over SSH
+          command: |          
+            scp -r tmp/www/* $SSH_USER@$SSH_HOST:\$HOME/web/pwms.com.br/apps/apicultor
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master 
