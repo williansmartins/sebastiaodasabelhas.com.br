@@ -1,9 +1,9 @@
 <?php
 
 // define constants
-define("RECIPIENT_NAME", "FORMULARZ WWW");
-define("RECIPIENT_EMAIL", "yourmaile@yourmail.com");
-define("EMAIL_SUBJECT", "Visitor Message");
+define("RECIPIENT_NAME", "xxx");
+define("RECIPIENT_EMAIL", "professorwillians@gmail.com");
+define("EMAIL_SUBJECT", "Visita no site do Tião");
 
 // read form values
 $send = false;
@@ -28,12 +28,12 @@ else {
 ?>
 <html>
 	<head>
-		<title>Message</title>
+		<title>Mensagem</title>
 	</head>
 	<body>
-		<?php if ( $send ) echo "<p>Message has been successfully sent.</p>" ?>
-		<?php if ( !$send ) echo "<p>There was an error in sending message. Please try again.</p>" ?>
-		<p>Click your browser's Back button to return to the page.</p>
+		<?php if ( $send ) echo "<p>Mensagem enviada com sucesso!</p>" ?>
+		<?php if ( !$send ) echo "<p>Houve um erro ao enviar a mensagem.</p>" ?>
+		<p>Clique no botão voltar do Navegador para retornar ao site.</p>
 	</body>
 </html>
 <?php
